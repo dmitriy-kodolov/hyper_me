@@ -7,6 +7,8 @@ import SendMessagePage from "pages/SendMessagePage";
 import FTPage from "pages/FTPage";
 import NFTPage from "pages/NFTPage";
 
+import Logo from "assets/Logo.png";
+
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 import s from "./App.module.scss";
 
@@ -56,7 +58,7 @@ const App = () => {
     <div className={s.root}>
       <Router>
         <div className={s.header}>
-          <img className={s.logo} src="src/assets/Logo.png" alt="logo" />
+          <img className={s.logo} src={Logo} alt="logo" />
           <NavBar />
           <ConnectWallet />
         </div>
