@@ -70,7 +70,7 @@ const FTPage = () => {
       <div className={s.bridgeBlock}>
         <div className={s.balance}>
           <span>Balance: {balance}</span>
-          <img src="/src/assets/refresh.svg" alt="refresh" />
+          <img src="hyper_me/src/assets/refresh.svg" alt="refresh" />
         </div>
         <div className={s.row}>
           <span>Tokens to be bridget</span>

@@ -42,7 +42,7 @@ const Select = (props) => {
         </div>
 
         <img
-          src={`/src/assets/${isDropdownOpen ? "arrowUp" : "arrowDown"}.svg`}
+          src={`hyper_me/src/assets/${isDropdownOpen ? "arrowUp" : "arrowDown"}.svg`}
           alt="arrow up"
         />
       </div>

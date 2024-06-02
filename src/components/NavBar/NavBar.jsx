@@ -3,7 +3,7 @@ import cn from "classnames";
 import s from "./NavBar.module.scss";
 
 const navBarItems = [
-  { title: "SEND MESSAGE", path: "/" },
+  { title: "SEND MESSAGE", path: "/hyper_me" },
   { title: "hFT BRIDGE", path: "/hFT" },
   { title: "hNFT BRIDGE", path: "/hNFT" },
 ];

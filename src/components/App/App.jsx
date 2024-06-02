@@ -56,13 +56,17 @@ const App = () => {
     <div className={s.root}>
       <Router>
         <div className={s.header}>
-          <img className={s.logo} src="/src/assets/Logo.png" alt="logo" />
+          <img
+            className={s.logo}
+            src="hyper_me/src/assets/Logo.png"
+            alt="logo"
+          />
           <NavBar />
           <ConnectWallet />
         </div>
         <main className={s.main}>
           <Routes>
-            <Route exact path="/" element={<SendMessagePage />} />
+            <Route exact path="/hyper_me" element={<SendMessagePage />} />
             <Route path="/hFT" element={<FTPage />} />
             <Route path="/hNFT" element={<NFTPage />} />
           </Routes>

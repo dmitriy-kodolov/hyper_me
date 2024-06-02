@@ -9,7 +9,7 @@ const Box = (props) => {
     <div className={cn(s.root, className)}>
       {children}
       <div className={s.footer}>
-        <img src="/src/assets/ConnectedBy.svg" alt="connected by" />
+        <img src="hyper_me/src/assets/ConnectedBy.svg" alt="connected by" />
       </div>
     </div>
   );
