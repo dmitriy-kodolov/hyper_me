@@ -1,0 +1,37 @@
+.wrapper{
+    gap: 40px;
+    align-items: center;
+}
+
+.sendMessageBtn{
+    height: 50px;
+    max-width: 360px;
+}
+
+.title{
+    width: 100%;
+    text-align: left;
+}
+
+.selects{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.labelBlock{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & > span{
+        font-size: 16px;
+    }
+}
+
+.swap{
+    margin-top: 34px;
+}

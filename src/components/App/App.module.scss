@@ -1,0 +1,34 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.root{
+  display: flex;
+  flex-direction: column;
+  padding: 31px 50px;
+  min-height: 95vh;
+}
+
+.header {
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 110px;
+}
+
+.logo{
+  width: 68px;
+  height: 40px;
+}
+
+.main{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  & > div{
+    width: 100%;
+  }
+}

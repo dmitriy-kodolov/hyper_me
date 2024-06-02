@@ -1,0 +1,23 @@
+.root {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly; 
+    align-items: center;
+    max-width: 400px;
+}
+
+.navBarItem {
+    font-weight: 500;
+    color: #FFF;
+    text-decoration: none;
+
+    &:hover{
+        cursor: pointer;
+        opacity: 0.8;
+        transition: all .3s ease-in;
+      }
+}
+
+.active{
+    opacity: 0.6;
+}

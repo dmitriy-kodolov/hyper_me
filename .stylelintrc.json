@@ -1,0 +1,29 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+        "declaration-no-important": null,
+        "scss/selector-no-redundant-nesting-selector": null,
+        "scss/at-import-partial-extension": null,
+        "keyframes-name-pattern": null,
+        "selector-class-pattern": null,
+        "selector-pseudo-class-no-unknown": [
+          true,
+          {
+            "ignorePseudoClasses": ["global"]
+          }
+        ],
+        "property-no-unknown": [
+          true,
+          {
+            "ignoreProperties": ["composes"]
+          }
+        ],
+        "selector-max-compound-selectors": 5,
+        "scss/at-rule-no-unknown": [
+          true,
+          {
+          "ignoreAtRules": ["svg-load", "util"]
+          }
+        ]
+      }
+}

@@ -1,0 +1,19 @@
+.root{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+    gap: 30px;
+}
+
+.link{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background: #FFFFFF1A;
+    overflow: hidden;
+}

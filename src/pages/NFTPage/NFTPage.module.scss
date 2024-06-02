@@ -1,0 +1,87 @@
+.wrapper{
+    gap: 40px;
+    align-items: center;
+}
+
+.sendMessageBtn{
+    height: 50px;
+    max-width: 360px;
+}
+
+.title{
+    width: 100%;
+    text-align: left;
+}
+
+.selects{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.labelBlock{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & > span{
+        font-size: 16px;
+    }
+}
+
+.swap{
+    margin-top: 34px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    background: #FFFFFF1A;
+    height: 60px;
+    padding: 10px;
+    border-radius: 15px;
+
+    & > span{
+        width: 149px;
+        font-size: 16px;
+        font-weight: 400;
+    }
+}
+
+.rowInput{
+    height: 100%;
+    max-width: 170px;
+
+    & > input{
+      text-align: center;
+    }
+}
+
+.rowBtn{
+    max-width: 290px;
+}
+
+.balance{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    & > img{
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.bridgeBlock{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+}
