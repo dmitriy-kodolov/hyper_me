@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import cn from "classnames";
 
 import { useOutsideClick } from "lib/hooks/useOutsideClick";
@@ -42,7 +42,7 @@ const Select = (props) => {
         </div>
 
         <img
-          src={`hyper_me/src/assets/${isDropdownOpen ? "arrowUp" : "arrowDown"}.svg`}
+          src={`src/assets/${isDropdownOpen ? "arrowUp" : "arrowDown"}.svg`}
           alt="arrow up"
         />
       </div>

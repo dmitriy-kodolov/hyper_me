@@ -56,11 +56,7 @@ const App = () => {
     <div className={s.root}>
       <Router>
         <div className={s.header}>
-          <img
-            className={s.logo}
-            src="hyper_me/src/assets/Logo.png"
-            alt="logo"
-          />
+          <img className={s.logo} src="src/assets/Logo.png" alt="logo" />
           <NavBar />
           <ConnectWallet />
         </div>

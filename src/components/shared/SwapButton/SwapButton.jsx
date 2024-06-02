@@ -6,7 +6,7 @@ const SwapButton = (props) => {
 
   return (
     <button className={cn(s.root, className)} type="button" onClick={onClick}>
-      <img src="hyper_me/src/assets/swap.svg" alt="swap" />
+      <img src="src/assets/swap.svg" alt="swap" />
     </button>
   );
 };
