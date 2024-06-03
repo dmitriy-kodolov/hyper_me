@@ -64,7 +64,7 @@ const App = () => {
         </div>
         <main className={s.main}>
           <Routes>
-            <Route exact path="/hyper_me" element={<SendMessagePage />} />
+            <Route exact path="/" element={<SendMessagePage />} />
             <Route path="/hFT" element={<FTPage />} />
             <Route path="/hNFT" element={<NFTPage />} />
           </Routes>

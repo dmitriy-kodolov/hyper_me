@@ -15,7 +15,7 @@ const NFTPage = () => {
   const [to, setTo] = useState(COINS[1]);
   const [claim, setClaim] = useState(0);
   const [bridget, setBridget] = useState(1000);
-  const [balance, setBalance] = useState(0);
+  // const [balance, setBalance] = useState(0);
 
   const swapHandler = () => {
     setFrom(to);
@@ -39,7 +39,7 @@ const NFTPage = () => {
 
   return (
     <Box className={s.wrapper}>
-      <h2 className={s.title}>Send ERC721</h2>
+      {/* <h2 className={s.title}>Send ERC721</h2> */}
 
       <div className={s.selects}>
         <div className={s.labelBlock}>
@@ -56,29 +56,29 @@ const NFTPage = () => {
       </div>
 
       <div className={s.row}>
-        <span>Claim amount</span>
+        {/* <span>Claim amount</span>
         <Input
           className={s.rowInput}
           value={claim}
           onChange={(e) => setClaim(e.target.value)}
-        />
+        /> */}
         <Button className={s.rowBtn} isSecondType>
           MINT
         </Button>
       </div>
 
       <div className={s.bridgeBlock}>
-        <div className={s.balance}>
+        {/* <div className={s.balance}>
           <span>Balance: {balance}</span>
           <img src="src/assets/refresh.svg" alt="refresh" />
-        </div>
+        </div> */}
         <div className={s.row}>
-          <span>Tokens to be bridget</span>
+          {/* <span>Tokens to be bridget</span>
           <Input
             className={s.rowInput}
             value={bridget}
             onChange={(e) => setBridget(e.target.value)}
-          />
+          /> */}
           <Button className={s.rowBtn} isSecondType>
             BRIDGE
           </Button>

@@ -8,7 +8,8 @@
 }
 
 body {
-  background: linear-gradient(90deg, #001D6D 0%, #7C55AF 100%);
+  /* background: linear-gradient(90deg, #001D6D 0%, #7C55AF 100%); */
+  background: #2362C0;
   overflow: hidden;
   color: #FFF;
 }

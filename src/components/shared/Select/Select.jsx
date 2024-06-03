@@ -50,17 +50,19 @@ const Select = (props) => {
       </div>
 
       {isDropdownOpen && (
-        <menu className={s.menu} ref={dropdownRef}>
-          {items.map(({ img, title }) => (
-            <MenuItem
-              isActive={value.title === title}
-              onClick={onChange}
-              key={title}
-              img={img}
-              title={title}
-            />
-          ))}
-        </menu>
+        <div className={s.menuWrapper}>
+          <menu className={s.menu} ref={dropdownRef}>
+            {items.map(({ img, title }) => (
+              <MenuItem
+                isActive={value.title === title}
+                onClick={onChange}
+                key={title}
+                img={img}
+                title={title}
+              />
+            ))}
+          </menu>
+        </div>
       )}
     </div>
   );

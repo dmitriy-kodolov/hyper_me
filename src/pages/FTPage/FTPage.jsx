@@ -7,6 +7,7 @@ import Select from "components/shared/Select/Select";
 import SwapButton from "components/shared/SwapButton";
 
 import { COINS } from "lib/constants/coins";
+import refresh from "assets/refresh.svg";
 
 import s from "./FTPage.module.scss";
 
@@ -39,7 +40,7 @@ const FTPage = () => {
 
   return (
     <Box className={s.wrapper}>
-      <h2 className={s.title}>Send ERC20</h2>
+      {/* <h2 className={s.title}>Send ERC20</h2> */}
 
       <div className={s.selects}>
         <div className={s.labelBlock}>
@@ -70,7 +71,7 @@ const FTPage = () => {
       <div className={s.bridgeBlock}>
         <div className={s.balance}>
           <span>Balance: {balance}</span>
-          <img src="src/assets/refresh.svg" alt="refresh" />
+          <img src={refresh} alt="refresh" />
         </div>
         <div className={s.row}>
           <span>Tokens to be bridget</span>
