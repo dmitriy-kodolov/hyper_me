@@ -28,7 +28,7 @@ const mainnet = {
 const metadata = {
   name: "Hyper Me",
   description: "Hyper Me",
-  url: "https://dmitriy-kodolov.github.io/hyper_me/", // origin must match your domain & subdomain
+  url: "https://dmitriy-kodolov.github.io/", // origin must match your domain & subdomain
   icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
