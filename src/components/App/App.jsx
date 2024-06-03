@@ -13,7 +13,7 @@ import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 import s from "./App.module.scss";
 
 // 1. Get projectId
-const projectId = "999d9bafc7c85eb4bb7a63abc956f01f";
+const projectId = "2bbedc7d815d08e77e55f05847c89f8b";
 
 // 2. Set chains
 const mainnet = {
@@ -28,8 +28,8 @@ const mainnet = {
 const metadata = {
   name: "Hyper Me",
   description: "Hyper Me",
-  url: "http//localhost", // origin must match your domain & subdomain
-  // icons: ["https://avatars.mywebsite.com/"],
+  url: "https://dmitriy-kodolov.github.io/hyper_me/", // origin must match your domain & subdomain
+  icons: ["https://avatars.githubusercontent.com/u/37784886"],
 };
 
 // 4. Create Ethers config
