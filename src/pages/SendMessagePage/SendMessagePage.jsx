@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useSwitchNetwork, useWeb3ModalAccount } from "@web3modal/ethers/react";
 
 import Box from "components/shared/Box";
 import Input from "components/shared/Input";
@@ -8,44 +9,16 @@ import SwapButton from "components/shared/SwapButton";
 
 import { COINS } from "lib/constants/coins";
 
-import {
-  useWeb3ModalProvider,
-  useSwitchNetwork,
-  useWeb3ModalAccount,
-} from "@web3modal/ethers/react";
-import { BrowserProvider, Contract, ethers } from "ethers";
-import { ABI } from "lib/constants/abi";
 import s from "./SendMessagePage.module.scss";
 
-const CONTRACT_ADDRESS = "0xaA2645d256f298395510FE181888803d8AA9a4c9";
-
-const SendMessagePage = () => {
+const SendMessagePage = (props) => {
+  const { contract } = props;
   const [from, setFrom] = useState(COINS[0]);
   const [to, setTo] = useState(COINS[1]);
   const [message, setMessage] = useState("TEST");
-  const [contract, setContract] = useState(null);
-  const { walletProvider } = useWeb3ModalProvider();
+
+  const { chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
-  const {
-    address,
-    chainId: currentChainId,
-    isConnected,
-  } = useWeb3ModalAccount();
-
-  const getContract = async () => {
-    const provider = new BrowserProvider(walletProvider);
-    const signer = await provider.getSigner();
-
-    const contractInstance = new Contract(CONTRACT_ADDRESS, ABI, signer);
-
-    setContract(contractInstance);
-  };
-
-  useEffect(() => {
-    if (!isConnected) return;
-
-    getContract();
-  }, [isConnected]);
 
   const swapHandler = () => {
     setFrom(to);
@@ -68,22 +41,19 @@ const SendMessagePage = () => {
   };
 
   const sendMessageHandler = async () => {
-    if (!isConnected) return;
+    if (!contract) return;
 
     if (currentChainId !== from.chainId) {
       switchNetwork(from.chainId);
       return;
     }
 
-    if (!contract) return;
-
     try {
-      const payableAmount = ethers.parseEther("0.0005");
-
-      const mint = await contract.mint(address, {
-        value: payableAmount,
+      const fee = await contract.bridgeFee();
+      const bridgeMessage = await contract.bridgeMessage(to.chainId, message, {
+        value: fee,
       });
-      console.log("mint", mint);
+      console.log("bridgeMessage", bridgeMessage);
     } catch (error) {
       console.error("Error sending message!!!:", error);
     }

@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { useSwitchNetwork, useWeb3ModalAccount } from "@web3modal/ethers/react";
 
 import Box from "components/shared/Box";
-import Input from "components/shared/Input";
 import Button from "components/shared/Button";
 import Select from "components/shared/Select/Select";
 import SwapButton from "components/shared/SwapButton";
@@ -10,12 +10,13 @@ import { COINS } from "lib/constants/coins";
 
 import s from "./NFTPage.module.scss";
 
-const NFTPage = () => {
+const NFTPage = (props) => {
+  const { contract } = props;
   const [from, setFrom] = useState(COINS[0]);
   const [to, setTo] = useState(COINS[1]);
-  const [claim, setClaim] = useState(0);
-  const [bridget, setBridget] = useState(1000);
-  // const [balance, setBalance] = useState(0);
+
+  const { address, chainId: currentChainId } = useWeb3ModalAccount();
+  const { switchNetwork } = useSwitchNetwork();
 
   const swapHandler = () => {
     setFrom(to);
@@ -34,6 +35,25 @@ const NFTPage = () => {
     setTo(coin);
     if (coin.title === from.title) {
       setFrom(COINS.find((coinItem) => coinItem.title !== from.title));
+    }
+  };
+
+  const mintHandler = async () => {
+    if (!contract) return;
+
+    if (currentChainId !== from.chainId) {
+      switchNetwork(from.chainId);
+      return;
+    }
+
+    try {
+      const fee = await contract.mintFee();
+      const mint = await contract.mint(address, {
+        value: fee,
+      });
+      console.log("mint", mint);
+    } catch (error) {
+      console.error("Error sending message!!!:", error);
     }
   };
 
@@ -62,7 +82,7 @@ const NFTPage = () => {
           value={claim}
           onChange={(e) => setClaim(e.target.value)}
         /> */}
-        <Button className={s.rowBtn} isSecondType>
+        <Button className={s.rowBtn} isSecondType onClick={mintHandler}>
           MINT
         </Button>
       </div>

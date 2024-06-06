@@ -8,9 +8,10 @@ import SendMessagePage from "pages/SendMessagePage";
 import FTPage from "pages/FTPage";
 import NFTPage from "pages/NFTPage";
 
-import Logo from "assets/Logo.png";
-
 import { arbitrum, mainnet, base } from "lib/constants/chains";
+import { useContract } from "lib/hooks/useContract";
+
+import Logo from "assets/Logo.png";
 
 import s from "./App.module.scss";
 
@@ -47,6 +48,8 @@ createWeb3Modal({
 });
 
 const App = () => {
+  const { contract } = useContract();
+
   return (
     <div className={s.root}>
       <Router>
@@ -57,9 +60,13 @@ const App = () => {
         </div>
         <main className={s.main}>
           <Routes>
-            <Route exact path="/" element={<SendMessagePage />} />
-            <Route path="/hFT" element={<FTPage />} />
-            <Route path="/hNFT" element={<NFTPage />} />
+            <Route
+              exact
+              path="/"
+              element={<SendMessagePage contract={contract} />}
+            />
+            <Route path="/hFT" element={<FTPage contract={contract} />} />
+            <Route path="/hNFT" element={<NFTPage contract={contract} />} />
           </Routes>
         </main>
         <Footer />
