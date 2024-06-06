@@ -50,10 +50,10 @@ const SendMessagePage = (props) => {
 
     try {
       const fee = await contract.bridgeFee();
+      const hyperLaneFee = await contract.calculateBridgeFee(0, to.chainId, "");
       const bridgeMessage = await contract.bridgeMessage(to.chainId, message, {
-        value: fee,
+        value: fee + hyperLaneFee,
       });
-      console.log("bridgeMessage", bridgeMessage);
     } catch (error) {
       console.error("Error sending message!!!:", error);
     }
