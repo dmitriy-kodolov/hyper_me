@@ -10,12 +10,13 @@ import arrowDown from "assets/arrowDown.svg";
 import s from "./Select.module.scss";
 
 const MenuItem = (props) => {
-  const { img, title, onClick, isActive, isIconMode } = props;
+  const { item, onClick, isActive, isIconMode } = props;
+  const { img, title } = item;
 
   return (
     <div
       className={cn(s.selectedItem, s.menuItem, { [s.active]: isActive })}
-      onClick={() => onClick({ img, title })}
+      onClick={() => onClick(item)}
     >
       <img className={s.selectedItemImg} src={getCoinImage(img)} alt={title} />
       {!isIconMode && <span>{title}</span>}
@@ -52,13 +53,12 @@ const Select = (props) => {
       {isDropdownOpen && (
         <div className={s.menuWrapper}>
           <menu className={s.menu} ref={dropdownRef}>
-            {items.map(({ img, title }) => (
+            {items.map((item) => (
               <MenuItem
-                isActive={value.title === title}
+                isActive={value.title === item.title}
                 onClick={onChange}
-                key={title}
-                img={img}
-                title={title}
+                key={item.title}
+                item={item}
               />
             ))}
           </menu>

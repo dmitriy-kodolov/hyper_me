@@ -1,4 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 
 import NavBar from "components/NavBar";
 import ConnectWallet from "components/ConnectWallet";
@@ -9,20 +10,14 @@ import NFTPage from "pages/NFTPage";
 
 import Logo from "assets/Logo.png";
 
-import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
+import { arbitrum, mainnet, base } from "lib/constants/chains";
+
 import s from "./App.module.scss";
 
 // 1. Get projectId
 const projectId = "2bbedc7d815d08e77e55f05847c89f8b";
 
 // 2. Set chains
-const mainnet = {
-  chainId: 1,
-  name: "Ethereum",
-  currency: "ETH",
-  explorerUrl: "https://etherscan.io",
-  rpcUrl: "https://cloudflare-eth.com",
-};
 
 // 3. Create a metadata object
 const metadata = {
@@ -41,16 +36,14 @@ const ethersConfig = defaultConfig({
   enableEIP6963: true, // true by default
   enableInjected: true, // true by default
   enableCoinbase: true, // true by default
-  // rpcUrl: "...", // used for the Coinbase SDK
-  // defaultChainId: 1, // used for the Coinbase SDK
 });
 
 // 5. Create a Web3Modal instance
 createWeb3Modal({
   ethersConfig,
-  chains: [mainnet],
+  chains: [mainnet, arbitrum, base],
   projectId,
-  // enableAnalytics: true, // Optional - defaults to your Cloud configuration
+  enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
 
 const App = () => {
