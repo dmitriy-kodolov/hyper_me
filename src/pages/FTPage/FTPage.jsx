@@ -3,7 +3,7 @@ import { useState } from "react";
 import Box from "components/shared/Box";
 import Input from "components/shared/Input";
 import Button from "components/shared/Button";
-import Select from "components/shared/Select/Select";
+import CoinsSelect from "components/CoinsSelect";
 import SwapButton from "components/shared/SwapButton";
 
 import { COINS } from "lib/constants/coins";
@@ -45,14 +45,14 @@ const FTPage = () => {
       <div className={s.selects}>
         <div className={s.labelBlock}>
           <span>From</span>
-          <Select value={from} items={COINS} onChange={onChangeFrom} />
+          <CoinsSelect value={from} items={COINS} onChange={onChangeFrom} />
         </div>
 
         <SwapButton className={s.swap} onClick={swapHandler} />
 
         <div className={s.labelBlock}>
           <span>To</span>
-          <Select value={to} items={COINS} onChange={onChangeTo} />
+          <CoinsSelect value={to} items={COINS} onChange={onChangeTo} />
         </div>
       </div>
 

@@ -1,9 +1,11 @@
-import { useState } from "react";
+/* eslint-disable no-await-in-loop */
+import { useEffect, useState } from "react";
 import { useSwitchNetwork, useWeb3ModalAccount } from "@web3modal/ethers/react";
 
 import Box from "components/shared/Box";
 import Button from "components/shared/Button";
-import Select from "components/shared/Select/Select";
+import CoinsSelect from "components/CoinsSelect";
+import Select from "components/shared/Select";
 import SwapButton from "components/shared/SwapButton";
 
 import { COINS } from "lib/constants/coins";
@@ -14,9 +16,32 @@ const NFTPage = (props) => {
   const { contract } = props;
   const [from, setFrom] = useState(COINS[0]);
   const [to, setTo] = useState(COINS[1]);
-
+  const [allNftCount, setAllNftCount] = useState([]);
+  const [nftToBridge, setNftToBridge] = useState(null);
   const { address, chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
+
+  const getAllNft = async () => {
+    const nftBalance = await contract.balanceOf(address);
+    const nfts = Array.from({ length: Number(nftBalance) }, (v, i) => i + 1);
+
+    const tokenIdsArr = [];
+    try {
+      for (let i = 1; i <= nfts.length; i += 1) {
+        const tokenId = await contract.tokenByIndex(i);
+        tokenIdsArr.push({ key: `${tokenId}`, value: `${tokenId}` });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+    setAllNftCount(tokenIdsArr);
+    setNftToBridge(tokenIdsArr[0]);
+  };
+  useEffect(() => {
+    if (!contract) return;
+
+    getAllNft();
+  }, [contract]);
 
   const swapHandler = () => {
     setFrom(to);
@@ -51,7 +76,32 @@ const NFTPage = (props) => {
       const mint = await contract.mint(address, {
         value: fee,
       });
-      console.log("mint", mint);
+      await getAllNft();
+    } catch (error) {
+      console.error("Error sending message!!!:", error);
+    }
+  };
+
+  const bridgeHandler = async () => {
+    if (!contract) return;
+
+    if (currentChainId !== from.chainId) {
+      switchNetwork(from.chainId);
+      return;
+    }
+
+    try {
+      const fee = await contract.bridgeFeeWithToken();
+      const hyperLaneFee = await contract.calculateBridgeFee(0, to.chainId, "");
+      const bridge = await contract.bridge(
+        BigInt(nftToBridge.value),
+        to.chainId,
+        "",
+        {
+          value: fee + hyperLaneFee,
+        },
+      );
+      await getAllNft();
     } catch (error) {
       console.error("Error sending message!!!:", error);
     }
@@ -64,14 +114,14 @@ const NFTPage = (props) => {
       <div className={s.selects}>
         <div className={s.labelBlock}>
           <span>From</span>
-          <Select value={from} items={COINS} onChange={onChangeFrom} />
+          <CoinsSelect value={from} items={COINS} onChange={onChangeFrom} />
         </div>
 
         <SwapButton className={s.swap} onClick={swapHandler} />
 
         <div className={s.labelBlock}>
           <span>To</span>
-          <Select value={to} items={COINS} onChange={onChangeTo} />
+          <CoinsSelect value={to} items={COINS} onChange={onChangeTo} />
         </div>
       </div>
 
@@ -99,7 +149,14 @@ const NFTPage = (props) => {
             value={bridget}
             onChange={(e) => setBridget(e.target.value)}
           /> */}
-          <Button className={s.rowBtn} isSecondType>
+          {allNftCount.length !== 0 && (
+            <Select
+              value={nftToBridge}
+              items={allNftCount}
+              onChange={(value) => setNftToBridge(value)}
+            />
+          )}
+          <Button onClick={bridgeHandler} className={s.rowBtn} isSecondType>
             BRIDGE
           </Button>
         </div>

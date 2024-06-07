@@ -18,8 +18,6 @@ import s from "./App.module.scss";
 // 1. Get projectId
 const projectId = "2bbedc7d815d08e77e55f05847c89f8b";
 
-// 2. Set chains
-
 // 3. Create a metadata object
 const metadata = {
   name: "Hyper Me",

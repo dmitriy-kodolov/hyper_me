@@ -2,27 +2,29 @@ import { useRef, useState } from "react";
 import cn from "classnames";
 
 import { useOutsideClick } from "lib/hooks/useOutsideClick";
+import { getCoinImage } from "lib/utils/getCoinImage";
 
 import arrowUp from "assets/arrowUp.svg";
 import arrowDown from "assets/arrowDown.svg";
 
-import s from "./Select.module.scss";
+import s from "./CoinsSelect.module.scss";
 
 const MenuItem = (props) => {
-  const { item, onClick, isActive } = props;
-  const { value } = item;
+  const { item, onClick, isActive, isIconMode } = props;
+  const { img, title } = item;
 
   return (
     <div
       className={cn(s.selectedItem, s.menuItem, { [s.active]: isActive })}
       onClick={() => onClick(item)}
     >
-      <span>{value}</span>
+      <img className={s.selectedItemImg} src={getCoinImage(img)} alt={title} />
+      {!isIconMode && <span>{title}</span>}
     </div>
   );
 };
 
-const Select = (props) => {
+const CoinsSelect = (props) => {
   const { items, onChange, value } = props;
 
   const dropdownRef = useRef();
@@ -41,7 +43,8 @@ const Select = (props) => {
     <div className={cn(s.root, { [s.rootOpen]: isDropdownOpen })}>
       <div className={s.selectedItemBlock} onClick={toggleDropdown}>
         <div className={s.selectedItem}>
-          <span>{value.value}</span>
+          <img src={getCoinImage(value.img)} alt={value.title} />
+          <span>{value.title}</span>
         </div>
 
         <img src={isDropdownOpen ? arrowUp : arrowDown} alt="arrow up" />
@@ -51,7 +54,12 @@ const Select = (props) => {
         <div className={s.menuWrapper}>
           <menu className={s.menu} ref={dropdownRef}>
             {items.map((item) => (
-              <MenuItem onClick={onChange} key={item.key} item={item} />
+              <MenuItem
+                isActive={value.title === item.title}
+                onClick={onChange}
+                key={item.title}
+                item={item}
+              />
             ))}
           </menu>
         </div>
@@ -60,4 +68,4 @@ const Select = (props) => {
   );
 };
 
-export default Select;
+export default CoinsSelect;
