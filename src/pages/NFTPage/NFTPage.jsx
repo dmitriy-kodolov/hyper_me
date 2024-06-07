@@ -76,6 +76,7 @@ const NFTPage = (props) => {
       const mint = await contract.mint(address, {
         value: fee,
       });
+      await mint.wait();
       await getAllNft();
     } catch (error) {
       console.error("Error sending message!!!:", error);
@@ -101,6 +102,7 @@ const NFTPage = (props) => {
           value: fee + hyperLaneFee,
         },
       );
+      await bridge.wait();
       await getAllNft();
     } catch (error) {
       console.error("Error sending message!!!:", error);
