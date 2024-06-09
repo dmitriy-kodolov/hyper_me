@@ -51,7 +51,14 @@ const Select = (props) => {
         <div className={s.menuWrapper}>
           <menu className={s.menu} ref={dropdownRef}>
             {items.map((item) => (
-              <MenuItem onClick={onChange} key={item.key} item={item} />
+              <MenuItem
+                onClick={(val) => {
+                  onChange(val);
+                  setIsDropdownOpen(false);
+                }}
+                key={item.key}
+                item={item}
+              />
             ))}
           </menu>
         </div>

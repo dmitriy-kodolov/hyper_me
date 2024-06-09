@@ -6,6 +6,7 @@ import Input from "components/shared/Input";
 import Button from "components/shared/Button";
 import CoinsSelect from "components/CoinsSelect";
 import SwapButton from "components/shared/SwapButton";
+import { useToast } from "components/ToastrProvider/ToastrProvider";
 
 import { COINS } from "lib/constants/coins";
 
@@ -19,6 +20,7 @@ const SendMessagePage = (props) => {
 
   const { chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
+  const addToast = useToast();
 
   const swapHandler = () => {
     setFrom(to);
@@ -57,6 +59,7 @@ const SendMessagePage = (props) => {
       });
       await bridgeMessage.wait();
     } catch (error) {
+      addToast("An error occurred, please try again later.");
       console.error("Error sending message!!!:", error);
     }
   };

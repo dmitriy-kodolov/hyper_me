@@ -54,19 +54,6 @@
     }
 }
 
-.rowInput{
-    height: 100%;
-    max-width: 170px;
-
-    & > input{
-      text-align: center;
-    }
-}
-
-// .rowBtn{
-//     max-width: 290px;
-// }
-
 .balance{
     display: flex;
     gap: 10px;
@@ -84,4 +71,8 @@
     flex-direction: column;
     gap: 10px;
     align-items: flex-end;
+}
+
+.selectNftBlock{
+    width: 200px;
 }

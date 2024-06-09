@@ -3,6 +3,7 @@ import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 
 import NavBar from "components/NavBar";
 import ConnectWallet from "components/ConnectWallet";
+import ToastrProvider from "components/ToastrProvider";
 import Footer from "components/Footer";
 import SendMessagePage from "pages/SendMessagePage";
 import FTPage from "pages/FTPage";
@@ -47,29 +48,30 @@ createWeb3Modal({
 
 const App = () => {
   const { contract } = useContract();
-
   return (
-    <div className={s.root}>
-      <Router>
-        <div className={s.header}>
-          <img className={s.logo} src={Logo} alt="logo" />
-          <NavBar />
-          <ConnectWallet />
-        </div>
-        <main className={s.main}>
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={<SendMessagePage contract={contract} />}
-            />
-            <Route path="/hFT" element={<FTPage contract={contract} />} />
-            <Route path="/hNFT" element={<NFTPage contract={contract} />} />
-          </Routes>
-        </main>
-        <Footer />
-      </Router>
-    </div>
+    <ToastrProvider>
+      <div className={s.root}>
+        <Router>
+          <div className={s.header}>
+            <img className={s.logo} src={Logo} alt="logo" />
+            <NavBar />
+            <ConnectWallet />
+          </div>
+          <main className={s.main}>
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={<SendMessagePage contract={contract} />}
+              />
+              <Route path="/hFT" element={<FTPage contract={contract} />} />
+              <Route path="/hNFT" element={<NFTPage contract={contract} />} />
+            </Routes>
+          </main>
+          <Footer />
+        </Router>
+      </div>
+    </ToastrProvider>
   );
 };
 

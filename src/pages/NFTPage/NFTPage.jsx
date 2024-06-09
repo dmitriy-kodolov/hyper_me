@@ -7,10 +7,16 @@ import Button from "components/shared/Button";
 import CoinsSelect from "components/CoinsSelect";
 import Select from "components/shared/Select";
 import SwapButton from "components/shared/SwapButton";
+import { useToast } from "components/ToastrProvider/ToastrProvider";
 
 import { COINS } from "lib/constants/coins";
 
 import s from "./NFTPage.module.scss";
+
+const delay = (time = 1000) =>
+  new Promise((resolve) => {
+    setTimeout(() => resolve(), time);
+  });
 
 const NFTPage = (props) => {
   const { contract } = props;
@@ -18,8 +24,10 @@ const NFTPage = (props) => {
   const [to, setTo] = useState(COINS[1]);
   const [allNftCount, setAllNftCount] = useState([]);
   const [nftToBridge, setNftToBridge] = useState(null);
+
   const { address, chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
+  const addToast = useToast();
 
   const getAllNft = async () => {
     const nftBalance = await contract.balanceOf(address);
@@ -37,6 +45,7 @@ const NFTPage = (props) => {
     setAllNftCount(tokenIdsArr);
     setNftToBridge(tokenIdsArr[0]);
   };
+
   useEffect(() => {
     if (!contract) return;
 
@@ -76,7 +85,8 @@ const NFTPage = (props) => {
       const mint = await contract.mint(address, {
         value: fee,
       });
-      await mint.wait();
+      // await mint.wait();
+      delay();
       await getAllNft();
     } catch (error) {
       console.error("Error sending message!!!:", error);
@@ -105,6 +115,7 @@ const NFTPage = (props) => {
       await bridge.wait();
       await getAllNft();
     } catch (error) {
+      addToast("An error occurred, please try again later.");
       console.error("Error sending message!!!:", error);
     }
   };
@@ -128,36 +139,23 @@ const NFTPage = (props) => {
       </div>
 
       <div className={s.row}>
-        {/* <span>Claim amount</span>
-        <Input
-          className={s.rowInput}
-          value={claim}
-          onChange={(e) => setClaim(e.target.value)}
-        /> */}
         <Button className={s.rowBtn} isSecondType onClick={mintHandler}>
           MINT
         </Button>
       </div>
 
       <div className={s.bridgeBlock}>
-        {/* <div className={s.balance}>
-          <span>Balance: {balance}</span>
-          <img src="src/assets/refresh.svg" alt="refresh" />
-        </div> */}
-        <div className={s.row}>
-          {/* <span>Tokens to be bridget</span>
-          <Input
-            className={s.rowInput}
-            value={bridget}
-            onChange={(e) => setBridget(e.target.value)}
-          /> */}
-          {allNftCount.length !== 0 && (
+        {allNftCount.length !== 0 && (
+          <div className={s.selectNftBlock}>
             <Select
               value={nftToBridge}
               items={allNftCount}
               onChange={(value) => setNftToBridge(value)}
             />
-          )}
+          </div>
+        )}
+
+        <div className={s.row}>
           <Button onClick={bridgeHandler} className={s.rowBtn} isSecondType>
             BRIDGE
           </Button>
