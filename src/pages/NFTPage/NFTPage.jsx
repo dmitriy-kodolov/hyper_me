@@ -13,10 +13,7 @@ import { COINS } from "lib/constants/coins";
 
 import s from "./NFTPage.module.scss";
 
-const delay = (time = 1000) =>
-  new Promise((resolve) => {
-    setTimeout(() => resolve(), time);
-  });
+const CHECK_TRANSACTION_URL = `https://explorer.hyperlane.xyz/?search=`;
 
 const NFTPage = (props) => {
   const { contract } = props;
@@ -35,8 +32,8 @@ const NFTPage = (props) => {
 
     const tokenIdsArr = [];
     try {
-      for (let i = 1; i <= nfts.length; i += 1) {
-        const tokenId = await contract.tokenByIndex(i);
+      for (let i = 0; i <= nfts.length; i += 1) {
+        const tokenId = await contract.tokenOfOwnerByIndex(address, i);
         tokenIdsArr.push({ key: `${tokenId}`, value: `${tokenId}` });
       }
     } catch (error) {
@@ -85,10 +82,10 @@ const NFTPage = (props) => {
       const mint = await contract.mint(address, {
         value: fee,
       });
-      // await mint.wait();
-      delay();
+      await mint.wait();
       await getAllNft();
     } catch (error) {
+      addToast("An error occurred, please try again later.");
       console.error("Error sending message!!!:", error);
     }
   };
@@ -112,9 +109,14 @@ const NFTPage = (props) => {
           value: fee + hyperLaneFee,
         },
       );
-      await bridge.wait();
+      const receipt = await bridge.wait();
+      addToast(`${CHECK_TRANSACTION_URL}${receipt.hash}`);
       await getAllNft();
     } catch (error) {
+      if (error.code === 4001) {
+        addToast("Transaction rejected by user");
+        return;
+      }
       addToast("An error occurred, please try again later.");
       console.error("Error sending message!!!:", error);
     }
@@ -122,8 +124,6 @@ const NFTPage = (props) => {
 
   return (
     <Box className={s.wrapper}>
-      {/* <h2 className={s.title}>Send ERC721</h2> */}
-
       <div className={s.selects}>
         <div className={s.labelBlock}>
           <span>From</span>

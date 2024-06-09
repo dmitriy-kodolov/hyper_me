@@ -12,7 +12,7 @@ const ToastrProvider = (props) => {
   const { children } = props;
   const [toasts, setToasts] = useState([]);
 
-  const addToast = useCallback((message, duration = 120000) => {
+  const addToast = useCallback((message, duration = 10000) => {
     const id = Date.now();
 
     setToasts((prevToasts) => [...prevToasts, { id, message, duration }]);
