@@ -56,7 +56,10 @@ const CoinsSelect = (props) => {
             {items.map((item) => (
               <MenuItem
                 isActive={value.title === item.title}
-                onClick={onChange}
+                onClick={(val) => {
+                  onChange(val);
+                  setIsDropdownOpen(false);
+                }}
                 key={item.title}
                 item={item}
               />

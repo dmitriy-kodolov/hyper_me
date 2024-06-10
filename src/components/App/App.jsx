@@ -1,12 +1,13 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import NavBar from "components/NavBar";
 import ConnectWallet from "components/ConnectWallet";
-import ToastrProvider from "components/ToastrProvider";
 import Footer from "components/Footer";
 import SendMessagePage from "pages/SendMessagePage";
-import FTPage from "pages/FTPage";
+// import FTPage from "pages/FTPage";
 import NFTPage from "pages/NFTPage";
 
 import { arbitrum, mainnet, base } from "lib/constants/chains";
@@ -49,29 +50,38 @@ createWeb3Modal({
 const App = () => {
   const { contract } = useContract();
   return (
-    <ToastrProvider>
-      <div className={s.root}>
-        <Router>
-          <div className={s.header}>
-            <img className={s.logo} src={Logo} alt="logo" />
-            <NavBar />
-            <ConnectWallet />
-          </div>
-          <main className={s.main}>
-            <Routes>
-              <Route
-                exact
-                path="/"
-                element={<SendMessagePage contract={contract} />}
-              />
-              <Route path="/hFT" element={<FTPage contract={contract} />} />
-              <Route path="/hNFT" element={<NFTPage contract={contract} />} />
-            </Routes>
-          </main>
-          <Footer />
-        </Router>
-      </div>
-    </ToastrProvider>
+    <div className={s.root}>
+      <Router>
+        <div className={s.header}>
+          <img className={s.logo} src={Logo} alt="logo" />
+          <NavBar />
+          <ConnectWallet />
+        </div>
+        <main className={s.main}>
+          <Routes>
+            <Route
+              exact
+              path="/"
+              element={<SendMessagePage contract={contract} />}
+            />
+            {/* <Route path="/hFT" element={<FTPage contract={contract} />} /> */}
+            <Route path="/hNFT" element={<NFTPage contract={contract} />} />
+          </Routes>
+        </main>
+        <Footer />
+      </Router>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+    </div>
   );
 };
 

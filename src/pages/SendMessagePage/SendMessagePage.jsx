@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useSwitchNetwork, useWeb3ModalAccount } from "@web3modal/ethers/react";
+import { toast } from "react-toastify";
 
 import Box from "components/shared/Box";
 import Input from "components/shared/Input";
 import Button from "components/shared/Button";
 import CoinsSelect from "components/CoinsSelect";
 import SwapButton from "components/shared/SwapButton";
-import { useToast } from "components/ToastrProvider/ToastrProvider";
+import ErrorMessageBlock from "components/ErrorToast";
+import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
 
@@ -16,11 +18,10 @@ const SendMessagePage = (props) => {
   const { contract } = props;
   const [from, setFrom] = useState(COINS[0]);
   const [to, setTo] = useState(COINS[1]);
-  const [message, setMessage] = useState("TEST");
+  const [message, setMessage] = useState("");
 
   const { chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
-  const addToast = useToast();
 
   const swapHandler = () => {
     setFrom(to);
@@ -46,21 +47,21 @@ const SendMessagePage = (props) => {
     if (!contract) return;
 
     if (currentChainId !== from.chainId) {
-      switchNetwork(from.chainId);
+      await switchNetwork(from.chainId);
       return;
     }
 
     try {
       const fee = await contract.bridgeFee();
       const hyperLaneFee = await contract.calculateBridgeFee(0, to.chainId, "");
-
       const bridgeMessage = await contract.bridgeMessage(to.chainId, message, {
         value: fee + hyperLaneFee,
       });
-      await bridgeMessage.wait();
+
+      const receipt = await bridgeMessage.wait();
+      toast(<HyperlaneTransactionLink txHash={receipt.hash} />);
     } catch (error) {
-      addToast("An error occurred, please try again later.");
-      console.error("Error sending message!!!:", error);
+      toast(<ErrorMessageBlock title="Send message error" error={error} />);
     }
   };
 

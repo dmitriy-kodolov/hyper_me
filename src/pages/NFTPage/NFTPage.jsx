@@ -1,19 +1,19 @@
 /* eslint-disable no-await-in-loop */
 import { useEffect, useState } from "react";
 import { useSwitchNetwork, useWeb3ModalAccount } from "@web3modal/ethers/react";
+import { toast } from "react-toastify";
 
 import Box from "components/shared/Box";
 import Button from "components/shared/Button";
 import CoinsSelect from "components/CoinsSelect";
 import Select from "components/shared/Select";
 import SwapButton from "components/shared/SwapButton";
-import { useToast } from "components/ToastrProvider/ToastrProvider";
+import ErrorMessageBlock from "components/ErrorToast";
+import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
 
 import s from "./NFTPage.module.scss";
-
-const CHECK_TRANSACTION_URL = `https://explorer.hyperlane.xyz/?search=`;
 
 const NFTPage = (props) => {
   const { contract } = props;
@@ -24,7 +24,6 @@ const NFTPage = (props) => {
 
   const { address, chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
-  const addToast = useToast();
 
   const getAllNft = async () => {
     const nftBalance = await contract.balanceOf(address);
@@ -85,8 +84,7 @@ const NFTPage = (props) => {
       await mint.wait();
       await getAllNft();
     } catch (error) {
-      addToast("An error occurred, please try again later.");
-      console.error("Error sending message!!!:", error);
+      toast(<ErrorMessageBlock title="Mint error" error={error} />);
     }
   };
 
@@ -110,15 +108,10 @@ const NFTPage = (props) => {
         },
       );
       const receipt = await bridge.wait();
-      addToast(`${CHECK_TRANSACTION_URL}${receipt.hash}`);
+      toast(<HyperlaneTransactionLink txHash={receipt.hash} />);
       await getAllNft();
     } catch (error) {
-      if (error.code === 4001) {
-        addToast("Transaction rejected by user");
-        return;
-      }
-      addToast("An error occurred, please try again later.");
-      console.error("Error sending message!!!:", error);
+      toast(<ErrorMessageBlock title="Bridge error" error={error} />);
     }
   };
 

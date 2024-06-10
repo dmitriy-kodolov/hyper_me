@@ -4,7 +4,7 @@ import s from "./NavBar.module.scss";
 
 const navBarItems = [
   { title: "SEND MESSAGE", path: "/" },
-  { title: "hFT BRIDGE", path: "/hFT" },
+  // { title: "hFT BRIDGE", path: "/hFT" },
   { title: "hNFT BRIDGE", path: "/hNFT" },
 ];
 const NavBar = () => (

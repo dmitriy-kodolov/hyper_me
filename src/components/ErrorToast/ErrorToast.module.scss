@@ -1,0 +1,36 @@
+.root{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.errorTitle{
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 18px;
+}
+
+.button{
+    width: fit-content;
+    display: block;
+    border-bottom: 1px dashed rgb(120, 120, 120);
+    font-size: 14px;
+    margin: 0;
+    margin-left: auto;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-bottom: 1px dashed rgb(120, 120, 120);
+}
+
+.error{
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0s ease 0s;
+    font-weight: 600;
+}
+
+.errorOpen{
+    transition: max-height 0.5s ease-in-out 0s;
+    max-height: 1000px;
+}
