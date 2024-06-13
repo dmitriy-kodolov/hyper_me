@@ -10,8 +10,23 @@ import SendMessagePage from "pages/SendMessagePage";
 // import FTPage from "pages/FTPage";
 import NFTPage from "pages/NFTPage";
 
-import { arbitrum, mainnet, base } from "lib/constants/chains";
 import { useContract } from "lib/hooks/useContract";
+import {
+  // mainnet,
+  arbitrum,
+  base,
+  avalanche,
+  bnb,
+  celo,
+  gnosis,
+  manta,
+  moonbeam,
+  optimism,
+  polygon,
+  polygonZKEVM,
+  scroll,
+  zetachain,
+} from "lib/constants/chains";
 
 import Logo from "assets/Logo.png";
 
@@ -42,7 +57,22 @@ const ethersConfig = defaultConfig({
 // 5. Create a Web3Modal instance
 createWeb3Modal({
   ethersConfig,
-  chains: [mainnet, arbitrum, base],
+  chains: [
+    // mainnet,
+    arbitrum,
+    base,
+    avalanche,
+    bnb,
+    celo,
+    gnosis,
+    manta,
+    moonbeam,
+    optimism,
+    polygon,
+    polygonZKEVM,
+    scroll,
+    zetachain,
+  ],
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
 });
