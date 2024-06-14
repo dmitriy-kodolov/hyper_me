@@ -95,17 +95,17 @@ export const scroll = {
 };
 
 export const manta = {
-  chainId: 34434,
+  chainId: 169,
   name: "Manta",
   currency: "MANTA",
   explorerUrl: "https://explorer.manta.network",
-  rpcUrl: "https://mainnet.manta.network",
+  rpcUrl: "https://pacific-rpc.manta.network/http",
 };
 
 export const zetachain = {
-  chainId: 7341,
+  chainId: 7000,
   name: "Zetachain",
   currency: "ZETA",
   explorerUrl: "https://explorer.zetachain.com",
-  rpcUrl: "https://mainnet.zetachain.com",
+  rpcUrl: "https://zetachain-mainnet-archive.allthatnode.com:8545",
 };
