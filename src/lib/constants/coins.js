@@ -11,7 +11,7 @@ export const COINS = [
   { img: "moonbeam.svg", title: "Moonbeam", chainId: 1284 },
   { img: "Optimism.svg", title: "OP Mainnet", chainId: 10 },
   { img: "polygon.svg", title: "Polygon zkEVM", chainId: 1101 },
-  { img: "Scroll.svg", title: "Scroll", chainId: 534351 },
+  { img: "Scroll.svg", title: "Scroll", chainId: 534352 },
   // { img: "Redstone.svg", title: "Redstone", chainId: 1 },
   // { img: "Mode.svg", title: "Mode", chainId: 1 },
   // { img: "Viction.svg", title: "Viction", chainId: 1 },

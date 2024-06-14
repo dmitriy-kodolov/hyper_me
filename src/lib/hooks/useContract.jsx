@@ -11,7 +11,7 @@ import { CONTRACT_ADDRESS } from "lib/constants/default";
 export const useContract = () => {
   const [contract, setContract] = useState(null);
   const { walletProvider } = useWeb3ModalProvider();
-  const { isConnected, address } = useWeb3ModalAccount();
+  const { isConnected, address, chainId } = useWeb3ModalAccount();
 
   const getContract = async () => {
     if (!isConnected) {
@@ -29,7 +29,7 @@ export const useContract = () => {
 
   useEffect(() => {
     getContract();
-  }, [isConnected, address]);
+  }, [isConnected, address, chainId]);
 
   return { contract };
 };

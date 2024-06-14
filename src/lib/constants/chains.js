@@ -87,7 +87,7 @@ export const gnosis = {
 };
 
 export const scroll = {
-  chainId: 534351,
+  chainId: 534352,
   name: "Scroll",
   currency: "ETH",
   explorerUrl: "https://scroll.io/explorer",
