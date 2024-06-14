@@ -47,7 +47,7 @@ export const avalanche = {
 };
 
 export const polygon = {
-  chainId: 137, //
+  chainId: 137,
   name: "Polygon",
   currency: "MATIC",
   explorerUrl: "https://explorer.polygon.technology",

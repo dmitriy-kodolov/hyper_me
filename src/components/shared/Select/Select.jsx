@@ -3,7 +3,6 @@ import cn from "classnames";
 
 import { useOutsideClick } from "lib/hooks/useOutsideClick";
 
-import arrowUp from "assets/arrowUp.svg";
 import arrowDown from "assets/arrowDown.svg";
 
 import s from "./Select.module.scss";
@@ -44,7 +43,11 @@ const Select = (props) => {
           <span>{value.value}</span>
         </div>
 
-        <img src={isDropdownOpen ? arrowUp : arrowDown} alt="arrow up" />
+        <img
+          className={cn({ [s.rotate]: isDropdownOpen })}
+          src={arrowDown}
+          alt="arrow up"
+        />
       </div>
 
       {isDropdownOpen && (
