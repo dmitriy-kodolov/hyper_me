@@ -102,7 +102,7 @@ const App = () => {
       </Router>
       <ToastContainer
         position="top-right"
-        autoClose={3000000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         rtl={false}

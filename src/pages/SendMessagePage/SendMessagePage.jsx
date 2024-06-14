@@ -7,7 +7,7 @@ import Input from "components/shared/Input";
 import Button from "components/shared/Button";
 import CoinsSelect from "components/CoinsSelect";
 import SwapButton from "components/shared/SwapButton";
-import ErrorMessageBlock from "components/ErrorToast";
+import Toast from "components/Toast";
 import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
@@ -59,9 +59,13 @@ const SendMessagePage = (props) => {
       });
 
       const receipt = await bridgeMessage.wait();
-      toast(<HyperlaneTransactionLink txHash={receipt.hash} />);
+      toast(
+        <Toast title="Your transaction">
+          <HyperlaneTransactionLink txHash={receipt.hash} />
+        </Toast>,
+      );
     } catch (error) {
-      toast(<ErrorMessageBlock title="Send message error" error={error} />);
+      toast(<Toast title="Send message error" error={error} />);
     }
   };
 

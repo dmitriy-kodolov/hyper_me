@@ -8,7 +8,7 @@ import Button from "components/shared/Button";
 import CoinsSelect from "components/CoinsSelect";
 import Select from "components/shared/Select";
 import SwapButton from "components/shared/SwapButton";
-import ErrorMessageBlock from "components/ErrorToast";
+import Toast from "components/Toast";
 import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
@@ -84,7 +84,7 @@ const NFTPage = (props) => {
       await mint.wait();
       await getAllNft();
     } catch (error) {
-      toast(<ErrorMessageBlock title="Mint error" error={error} />);
+      toast(<Toast title="Mint error" error={error} />);
     }
   };
 
@@ -108,10 +108,14 @@ const NFTPage = (props) => {
         },
       );
       const receipt = await bridge.wait();
-      toast(<HyperlaneTransactionLink txHash={receipt.hash} />);
+      toast(
+        <Toast title="Your transaction">
+          <HyperlaneTransactionLink txHash={receipt.hash} />
+        </Toast>,
+      );
       await getAllNft();
     } catch (error) {
-      toast(<ErrorMessageBlock title="Bridge error" error={error} />);
+      toast(<Toast title="Bridge error" error={error} />);
     }
   };
 
