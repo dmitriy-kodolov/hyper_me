@@ -11,17 +11,18 @@ import Toast from "components/Toast";
 import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
+import { useContract } from "lib/hooks/useContract";
 
 import s from "./SendMessagePage.module.scss";
 
-const SendMessagePage = (props) => {
-  const { contract } = props;
+const SendMessagePage = () => {
   const [from, setFrom] = useState(COINS[0]);
   const [to, setTo] = useState(COINS[1]);
   const [message, setMessage] = useState("");
 
   const { chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
+  const { contract } = useContract("sendMessage");
 
   const swapHandler = () => {
     setFrom(to);

@@ -5,10 +5,12 @@ import {
 } from "@web3modal/ethers/react";
 import { BrowserProvider, Contract } from "ethers";
 
-import { ABI } from "lib/constants/abi";
-import { CONTRACT_ADDRESS } from "lib/constants/default";
+import { ABI, hFTABI } from "lib/constants/abi";
+import { CONTRACT_ADDRESS, HFT_CONTRACT_ADDRESS } from "lib/constants/default";
 
-export const useContract = () => {
+const isHFTTypeContract = (pageType) => pageType === "hFT";
+
+export const useContract = (pageType = "hFT") => {
   const [contract, setContract] = useState(null);
   const { walletProvider } = useWeb3ModalProvider();
   const { isConnected, address, chainId } = useWeb3ModalAccount();
@@ -22,7 +24,16 @@ export const useContract = () => {
     const provider = new BrowserProvider(walletProvider);
     const signer = await provider.getSigner();
 
-    const contractInstance = new Contract(CONTRACT_ADDRESS, ABI, signer);
+    const currentContractAddress = isHFTTypeContract(pageType)
+      ? HFT_CONTRACT_ADDRESS
+      : CONTRACT_ADDRESS;
+    const currentContractAbi = isHFTTypeContract(pageType) ? hFTABI : ABI;
+
+    const contractInstance = new Contract(
+      currentContractAddress,
+      currentContractAbi,
+      signer,
+    );
 
     setContract(contractInstance);
   };

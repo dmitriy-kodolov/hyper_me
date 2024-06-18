@@ -12,11 +12,11 @@ import Toast from "components/Toast";
 import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
+import { useContract } from "lib/hooks/useContract";
 
 import s from "./NFTPage.module.scss";
 
-const NFTPage = (props) => {
-  const { contract } = props;
+const NFTPage = () => {
   const [from, setFrom] = useState(COINS[0]);
   const [to, setTo] = useState(COINS[1]);
   const [allNftCount, setAllNftCount] = useState([]);
@@ -24,22 +24,22 @@ const NFTPage = (props) => {
 
   const { address, chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
+  const { contract } = useContract("NFT");
 
   const getAllNft = async () => {
     const nftBalance = await contract.balanceOf(address);
     const nfts = Array.from({ length: Number(nftBalance) }, (v, i) => i + 1);
-
-    const tokenIdsArr = [];
+    const tokensArr = [];
     try {
       for (let i = 0; i <= nfts.length; i += 1) {
         const tokenId = await contract.tokenOfOwnerByIndex(address, i);
-        tokenIdsArr.push({ key: `${tokenId}`, value: `${tokenId}` });
+        tokensArr.push({ key: `${tokenId}`, value: `${tokenId}` });
       }
     } catch (error) {
-      console.error(error);
+      console.error("get nft balance error", error);
     }
-    setAllNftCount(tokenIdsArr);
-    setNftToBridge(tokenIdsArr[0]);
+    setAllNftCount(tokensArr);
+    setNftToBridge(tokensArr[0]);
   };
 
   useEffect(() => {

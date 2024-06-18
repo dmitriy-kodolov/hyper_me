@@ -90,7 +90,7 @@ export const scroll = {
   chainId: 534352,
   name: "Scroll",
   currency: "ETH",
-  explorerUrl: "https://scroll.io/explorer",
+  explorerUrl: "https://scrollscan.com/",
   rpcUrl: "https://rpc.scroll.io",
 };
 
