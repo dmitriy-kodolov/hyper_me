@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
 import { ToastContainer } from "react-toastify";
+import { useMediaQuery } from "react-responsive";
 import "react-toastify/dist/ReactToastify.css";
 
 import NavBar from "components/NavBar";
@@ -77,14 +78,29 @@ createWeb3Modal({
 });
 
 const App = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  console.log("isMobile", isMobile);
+
   return (
     <div className={s.root}>
       <Router>
-        <div className={s.header}>
-          <img className={s.logo} src={Logo} alt="logo" />
-          <NavBar />
-          <ConnectWallet />
-        </div>
+        {isMobile && (
+          <div className={s.header}>
+            <div className={s.headerMobileWrapper}>
+              <img className={s.logo} src={Logo} alt="logo" />
+              <ConnectWallet />
+            </div>
+            <NavBar />
+          </div>
+        )}
+
+        {!isMobile && (
+          <div className={s.header}>
+            <img className={s.logo} src={Logo} alt="logo" />
+            <NavBar />
+            <ConnectWallet />
+          </div>
+        )}
         <main className={s.main}>
           <Routes>
             <Route exact path="/" element={<SendMessagePage />} />

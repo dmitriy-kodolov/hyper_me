@@ -1,3 +1,5 @@
+@import './lib/variables.scss';
+
 :root {
   font-family: Roboto, sans-serif;
   box-sizing: border-box;
@@ -12,6 +14,10 @@ body {
   background: #2362C0;
   overflow: hidden;
   color: #FFF;
+
+  @media (max-width: $small-screen){
+    overflow: auto;
+  }
 }
 
 h2{
