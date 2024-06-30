@@ -13,6 +13,12 @@ import HyperlaneTransactionLink from "components/HyperlaneTransactionLink";
 
 import { COINS } from "lib/constants/coins";
 import { useContract } from "lib/hooks/useContract";
+import {
+  CONTRACT_ADDRESS,
+  MOONBEAM_CONTRACT,
+  MOONBEAM_CHAIN_ID,
+} from "lib/constants/default";
+import { ABI } from "lib/constants/abi";
 
 import s from "./NFTPage.module.scss";
 
@@ -24,7 +30,9 @@ const NFTPage = () => {
 
   const { address, chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
-  const { contract } = useContract("NFT");
+  const currentContractAddress =
+    currentChainId === MOONBEAM_CHAIN_ID ? MOONBEAM_CONTRACT : CONTRACT_ADDRESS;
+  const { contract } = useContract(ABI, currentContractAddress);
 
   const getAllNft = async () => {
     const nftBalance = await contract.balanceOf(address);

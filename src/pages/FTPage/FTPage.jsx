@@ -12,7 +12,8 @@ import SwapButton from "components/shared/SwapButton";
 
 import { COINS } from "lib/constants/coins";
 import { useContract } from "lib/hooks/useContract";
-
+import { hFTABI } from "lib/constants/abi";
+import { HFT_CONTRACT_ADDRESS } from "lib/constants/default";
 // import refresh from "assets/refresh.svg";
 
 import s from "./FTPage.module.scss";
@@ -24,7 +25,7 @@ const FTPage = () => {
   const [bridgeCount, setBridgeCount] = useState(1000);
   const [balance, setBalance] = useState(0);
 
-  const { contract } = useContract("hFT");
+  const { contract } = useContract(hFTABI, HFT_CONTRACT_ADDRESS);
   const { address, chainId: currentChainId } = useWeb3ModalAccount();
   const { switchNetwork } = useSwitchNetwork();
 
