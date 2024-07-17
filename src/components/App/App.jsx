@@ -20,7 +20,7 @@ import {
   celo,
   gnosis,
   manta,
-  moonbeam,
+  // moonbeam,
   optimism,
   polygon,
   polygonZKEVM,
@@ -66,7 +66,7 @@ createWeb3Modal({
     celo,
     gnosis,
     manta,
-    moonbeam,
+    // moonbeam,
     optimism,
     polygon,
     polygonZKEVM,
@@ -79,7 +79,6 @@ createWeb3Modal({
 
 const App = () => {
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  console.log("isMobile", isMobile);
 
   return (
     <div className={s.root}>

@@ -8,7 +8,7 @@ export const COINS = [
   { img: "celo.svg", title: "Celo", chainId: 42220 },
   { img: "gnosis.svg", title: "Gnosis", chainId: 100 },
   { img: "manta.svg", title: "Manta Pacific", chainId: 169 },
-  { img: "moonbeam.svg", title: "Moonbeam", chainId: 1284 },
+  // { img: "moonbeam.svg", title: "Moonbeam", chainId: 1284 },
   { img: "Optimism.svg", title: "OP Mainnet", chainId: 10 },
   { img: "polygonZK.svg", title: "Polygon zkEVM", chainId: 1101 },
   { img: "Scroll.svg", title: "Scroll", chainId: 534352 },
