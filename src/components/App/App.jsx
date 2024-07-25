@@ -25,7 +25,7 @@ import {
   polygon,
   polygonZKEVM,
   scroll,
-  zetachain,
+  // zetachain,
 } from "lib/constants/chains";
 
 import Logo from "assets/Logo.png";
@@ -71,7 +71,7 @@ createWeb3Modal({
     polygon,
     polygonZKEVM,
     scroll,
-    zetachain,
+    // zetachain,
   ],
   projectId,
   enableAnalytics: true, // Optional - defaults to your Cloud configuration
