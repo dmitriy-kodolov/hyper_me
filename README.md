@@ -1,8 +1,26 @@
-# React + Vite
+What is HyperMe? HyperMe is the first cross-chain messaging app built on Hyperlane. It allows users to send cross-chain messages and bridge NFTs between multiple blockchain networks. The app ensures secure and decentralized communication and asset transfer without intermediaries.
+Base
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Optimism 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
 
-Currently, two official plugins are available:
+Arbitrum 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Scroll 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+Celo 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+Avalanche 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+Gnosis 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+
+Binance Smart Chain (BSC) 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+Polygon ZKEVM 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+Polygon 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
+
+Our app currently has the following stats:
+Active users: 8k per month
+Transactions: 12k per month & 400 per day 
+more detailed statistics can be seen here (https://dappradar.com/dapp/hyperme?chains-ds=bnb-chain%2Cavalanche%2Cpolygon%2Coptimism%2Ccelo%2Carbitrum%2Cbase&range-ds=30d)
