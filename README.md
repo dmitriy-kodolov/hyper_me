@@ -1,4 +1,4 @@
-**What is HyperMe? **
+**What is HyperMe?**
 HyperMe is the first cross-chain messaging app built on Hyperlane. It allows users to send cross-chain messages and bridge NFTs between multiple blockchain networks. The app ensures secure and decentralized communication and asset transfer without intermediaries.
 
 Base 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
