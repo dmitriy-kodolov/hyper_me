@@ -23,4 +23,4 @@ Polygon 0xe425183ce903a2387c00c35a6fb47fc6b9de8fd9
 Our app currently has the following stats:
 Active users: 8k per month
 Transactions: 12k per month & 400 per day 
-more detailed statistics can be seen here (https://dappradar.com/dapp/hyperme?chains-ds=bnb-chain%2Cavalanche%2Cpolygon%2Coptimism%2Ccelo%2Carbitrum%2Cbase&range-ds=30d)
+more detailed statistics can be seen [here](https://dappradar.com/dapp/hyperme?chains-ds=bnb-chain%2Cavalanche%2Cpolygon%2Coptimism%2Ccelo%2Carbitrum%2Cbase&range-ds=30d)
